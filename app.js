@@ -18,12 +18,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(lessMiddleware(path.join(__dirname, 'public')));
+app.use(lessMiddleware(path.join(__dirname, 'public','less'),{
+	dest: path.join(__dirname, 'public'),
+  preprocess: {
+    path: function(pathname, req) {
+      return pathname.replace(path.sep + 'stylesheets' + path.sep, path.sep);
+    }
+  },
+	force: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // referencia al archivo de controladores
