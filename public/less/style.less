@@ -1,8 +1,83 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@charset 'utf-8';
+
+@body-margin: 10px;
+
+html {
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
 }
 
-a {
-  color: #00B7FF;
+body {
+	position: absolute;
+	margin: @body-margin !important;
+	width: calc(100% ~"-" 2*@body-margin);
+	height: calc(100% ~"-" 2*@body-margin);
+	background-image: url('/images/fondo.png');
+	background-position: center;
+}
+
+/* ESTILOS PARA EL LOGIN DE USUARIO */
+@login-width: 400px;
+@login-height: 500px;
+@login-border-radius: 10px;
+@login-background: #FFFFFF;
+@login-head-background: #E83660;
+@login-head-height: 64px;
+@login-logo-width: 170px;
+@login-footer-height: 200px;
+
+.login-container {
+  position: absolute;
+  width: @login-width;
+  height: inherit;
+  left: calc(50% ~"-" @login-width/2);
+}
+
+.login-form {
+  position: absolute;
+  width: inherit;
+  top: calc(50% ~"-" @login-height/2);
+  height: @login-height;
+  background-color: @login-background;
+  border-radius: @login-border-radius;
+  box-shadow: 1px 1px 5px rgba(0,0,0,1);
+  overflow: hidden;
+}
+
+.login-head {
+  width: inherit;
+  padding: 10px;
+  height: @login-head-height;
+  background-color: @login-head-background;
+  text-align: center;
+  color: #fff;
+  font-size: 34px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,1);
+}
+
+.login-logo {
+	position: relative;
+  width: inherit;
+  padding: 10px;
+  height: calc(100% ~"-" @login-footer-height ~"-" @login-head-height);
+}
+
+.login-logo img {
+  position: absolute;
+  width: @login-logo-width;
+  left: calc(50% ~"-" @login-logo-width/2);
+  top: calc(50% ~"-" @login-logo-width*1.1035/2);
+}
+
+.login-input {
+  width: inherit;
+  padding: 10px;
+  height: @login-footer-height;
+}
+
+input:focus {
+  background-color: #FFF1C2;
 }

@@ -1,5 +1,6 @@
 // se obtienen todas las librerias para el funcionamiento de la aplicacion
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,6 +10,11 @@ var lessMiddleware = require('less-middleware');
 
 // se cargan los controladores
 var index = require('./routes/index');
+var socia = require('./routes/socia');
+var evento = require('./routes/evento');
+var maquina = require('./routes/maquina');
+var notificacion = require('./routes/notificacion');
+var transaccion = require('./routes/transaccion');
 
 // se inicia la aplicacion
 var app = express();
@@ -17,7 +23,16 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
+// configuracion de la sesión
+app.use(session({
+  secret: 'uc8u2b17dn2innim183n',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true
+  }
+}));
+
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -36,6 +51,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // referencia al archivo de controladores
 app.use('/', index);
+app.use('/socia', socia);
+app.use('/evento', evento);
+app.use('/maquina', maquina);
+app.use('/notificacion', notificacion);
+app.use('/transaccion', transaccion);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

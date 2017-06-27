@@ -1,5 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .login-container
+    .login-form
+      .login-head Ingreso
+      .login-logo
+        img(src='images/logo.jpg')
+      .login-input
+        .form-group
+          .input-group
+            input#input-rut.form-control(type='text',placeholder='Ingrese su RUT', aria-describedby='help-rut')
+            span.input-group-addon
+              span.glyphicon.glyphicon-user
+          span#help-rut.help-block(style='text-align: center;color: #9C9C9C;font-size: 19px;') Debe tener el formato de 11111111-1
+        .form-group
+          .input-group
+            input#input-pass.form-control(type='password',placeholder='Ingrese su contraseña')
+            span.input-group-addon
+              span.glyphicon.glyphicon-lock
+        .checkbox(style='text-align: center;')
+          label
+            input(type='checkbox',value='')
+            !{"Recordarme"}
